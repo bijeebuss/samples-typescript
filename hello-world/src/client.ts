@@ -23,6 +23,9 @@ async function run() {
     args: ['Temporal'],
     // in practice, use a meaningful business ID, like customerId or transactionId
     workflowId: 'workflow-' + nanoid(),
+    retry: {
+      maximumAttempts: 3
+    }
   });
   console.log(`Started workflow ${handle.workflowId}`);
 

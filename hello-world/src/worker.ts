@@ -1,8 +1,12 @@
 // @@@SNIPSTART typescript-hello-worker
-import { NativeConnection, Worker } from '@temporalio/worker';
+import { DefaultLogger, NativeConnection, Runtime, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
 async function run() {
+  const logger = new DefaultLogger('DEBUG', (entry) => {
+    console.log(entry);
+  });
+  Runtime.install({ logger });
   // Step 1: Establish a connection with Temporal server.
   //
   // Worker code uses `@temporalio/worker.NativeConnection`.
